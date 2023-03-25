@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Блог {{ other_user.login }}</title>
+	<style type="text/css">
+		.block {
+			height: 200px;
+			border: 1px solid black;
+			border-radius: 20px;
+			margin-top: 50px;
+		}
+		.view_blog {
+				border: 0px solid black;
+			    margin-left: auto;
+    			width: 800px;
+    			text-align: center;
+    			overflow-y: scroll;
+    			background: white;
+		}
+		.create_blog {
+				background: white;
+			    height: 700px;
+			    text-align: center;
+			    padding-top: 50px;
+			    padding-bottom: 50px;
+			    padding-left: 40px;
+			    padding-right: 40px;
+		}
+		textarea {
+			resize: none;
+		}
+	</style>
+</head>
+{% extends "HTML/navigation.html" %}
+{% block body %}
+	<div style="display: flex; padding-left: 20px; padding-right: 20px;">
+		{% if is_root %}
+			<div class="create_blog block">
+				<form method="POST">
+					<div style="text-align: left; margin-left: auto; width: 350px;">
+						<input type="text" name="title"> название<br><br>
+						<input type="text" name="topic"> тема поста <br><br>
+					</div>
+					<textarea rows=18 cols=60 name="text" placeholder="Введите текст..."></textarea> <br><br>
+					<input type="submit" name="save blog" value="Выложить запись">
+				</form>
+			</div>
+		{% endif %}
+		<div class="view_blog block" style="height: 800px;">
+			{% set BLOGS = other_user.BLOG.BLOGS %}
+			{% for blog_id in BLOGS %}
+				{% set blog = BLOGS[blog_id] %}
+				{% set text = blog["text"] %}
+				{% set information = blog["information"] %}
+				{% set date = information["date"] %}
+				{% set title = information["title"] %}
+				{% set topic = information["topic"] %}
+				<div class="block">
+					<h2>{{title}}</h2>
+					<p>дата {{date}}</p>
+					<p>тема поста: {{topic}}</p>
+					<a href="/home/{{ root_user.HASH }}/watching_blog/{{ other_user.login }}/{{ blog_id }}">более подробно можно ознакомиться тут</a>
+				<br><br>
+				{% if is_root %}
+					<a href="/home/{{ root_user.HASH }}/delete_blog/{{ blog_id }}" style="color: red;">Удалить блог</a>
+				{% endif %}
+				<br><br>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}
+</html>

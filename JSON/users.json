@@ -1,0 +1,35 @@
+{
+  "login": {
+    "login": null,
+    "password": null,
+    "HASH": null,
+    "id": 0,
+    "preview": {
+      "age": null,
+      "phone": null,
+      "hobby": null
+    },
+    "BLOG": {
+      "next_id": 0,
+      "BLOGS": {
+        "ID": {
+          "information": {
+            "date": null,
+            "title": null,
+            "topic": null
+          },
+          "text": [
+            null
+          ]
+        }
+      }
+    },
+    "CHATS": {
+      "hash_chat": "login"
+    },
+    "FRIENDS": [],
+    "PHOTOS": {
+      "root_photo": null
+    }
+  }
+}

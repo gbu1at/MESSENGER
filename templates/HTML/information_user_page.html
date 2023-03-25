@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Домашняя страница</title>
+	<style type="text/css">
+		.preview_div {
+			    border: 1px solid black;
+			    width: 500px;
+			    padding-left: 20px;
+			    padding-bottom: 20px;
+			    height: 100px;
+		}
+		.nav_div_in_page_user {
+			    border: 1px solid black;
+			    margin-left: auto;
+			    padding-top: 85px;
+			    padding-left: 50px;
+			    padding-right: 50px;
+			    border-radius: 40px;
+			    background: white;
+		}
+		.nav_a_in_page_user {
+				font-size: 25px;
+				color: #787575;
+		}
+		#div_friends {
+			margin-right: auto;
+		    margin-left: auto;
+		    height: 400px;
+		    width: 400px;
+		    display: none;
+		}
+		#div_friends:target {
+			display: block;
+			margin-top: -200px;
+		}
+		.close {
+	        display: inline-block;
+	        border: 1px solid #0000cc;
+	        border-radius: 10px;
+	        color: #0000cc;
+	        padding: 0 12px;
+	        margin: 10px;
+	        text-decoration: none;
+	        background: #f2f2f2;
+	        font-size: 14pt;
+	        cursor:pointer;
+	     }
+		.close:hover {
+			background: #e6e6ff;
+		}
+		#list_friend {
+				padding-top: 20px;
+			    border: 1px solid;
+			    height: 400px;
+			    overflow-y: scroll;
+			    border-radius: 20px;
+			    background: whitesmoke;
+		}
+		.body_div {
+			display: flex; 
+			padding-left: 20px; 
+			padding-right: 400px;
+			height: 300px;
+		}
+	</style>
+</head>
+{% extends "HTML/navigation.html" %}
+{% block body %}
+	<div style="display: flex;">
+		<h1 style="margin-left: 100px">Привет! Меня зовут {{ other_user.login }}</h1>
+		{% if is_friend %}
+			<a href="/home/{{ root_user.HASH }}/add_friend/{{ other_user.login }}"><img src="/static/images/is_friend.jpg" width=50px></a>
+		{% else %}
+			<a href="/home/{{ root_user.HASH }}/add_friend/{{ other_user.login }}"><img src="/static/images/is_no_friend.jpg" width=50px></a>
+		{% endif %}
+	</div>
+	{% if is_root %}
+		<form action="" method=post enctype=multipart/form-data style="margin-left: 100px;">
+			<input type="file" name="photo" value="фото">
+			<input type="submit" name="download_photo" value="загрузить фото">
+		</form>
+	{% endif %}
+	<br><br>
+	<div>
+		<div class="body_div">
+			<img src="{{ other_user.PHOTOS['root_photo'] }}" style="margin-left: 100px; height: 300px; border-radius: 10px;" alt="у пользователя нет фото ("> <br><br>
+
+			<!-- <div class="preview_div">
+				<p>Контактная информация: {{ other_user.phone }}</p>
+				<p>Интересы: {{ other_user.hobby }}</p>
+				{% if is_root %}
+					<form method="POST">
+						<input type="submit" name="Редактировать" value="Редактировать">
+					</form>
+				{% endif %}
+			</div> -->
+			<div id="div_friends">
+				<a href="#" class="close" style="color: red; margin-top: 200px">X</a>
+				<div id="list_friend" style="text-align: center;">
+					{% for friend in other_user.FRIENDS %}
+						<a href="/home/{{ root_user.HASH }}/watching_page/{{ friend }}"> {{ friend }} </a><br><br>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="nav_div_in_page_user">
+				<a href="/home/{{ root_user.HASH }}/watching_blogs/{{ other_user.login }}" class="nav_a_in_page_user">Мой блог</a><br><br>
+				<a href="/home/{{ root_user.HASH }}/watching_photos/{{ other_user.login }}" class="nav_a_in_page_user">Мои фотографии</a><br><br>
+				<a href="#div_friends" class="nav_a_in_page_user">Мои друзья</a><br><br>
+			</div>
+		</div>
+		<!-- {% if is_root %}
+			<form method="POST">
+				<input type="file" name="photo" value="фото">
+				<input type="submit" name="download_photo" value="загрузить фото">
+			</form>
+		{% endif %} -->
+	</div>
+
+{% endblock %}
+</html>

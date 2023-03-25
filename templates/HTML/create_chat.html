@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Создание чата</title>
+</head>
+{% extends "HTML/navigation.html" %}
+{% block body %}
+<form method="POST" class="login_form" style="margin-left: 300px">
+	<input type="text" name="password"> Название у чата<br><br>
+	<input type="submit" name="Создать" value="Создать">
+</form>
+{% endblock %}
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> Пост пользователя {{ other_user.login }} </title>
+	<style type="text/css">
+		.div_post {
+			text-align: left;
+		    width: 1000px;
+		    margin-left: auto;
+		    margin-right: auto;
+		    margin-top: 100px;
+		    background: white;
+		}
+	</style>
+</head>
+{% extends "HTML/navigation.html" %}
+{% block body %}
+	<div class="div_post">
+		{% for line in blog.text %}
+			<em><pre style="font-size: 20px">{{ line }}</pre></em>
+		{% endfor %}
+		<br>
+		<br>
+		{% if is_root %}
+			<a style="color: #e58080" href="/home/{{ root_user.HASH }}/delete_blog/{{ blog_id }}">Удалить пост</a>
+		{% endif %}
+	</div>
+{% endblock %}
+</html>

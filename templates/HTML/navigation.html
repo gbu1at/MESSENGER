@@ -1,0 +1,36 @@
+<link rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" 
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" 
+    crossorigin="anonymous">
+<style>
+	.nav_div {
+			margin-top: 20px;
+		    text-align: center;
+		    border-radius: 20px;
+		    border: 1px solid black;
+/*		    height: 50px;*/
+		    padding-top: 15px;
+		    padding-bottom: 15px;
+	}
+	.nav_a {
+		    font-size: 30px;
+    		color: #6c6c6c;
+    		margin-left: 80px;
+    		margin-top: auto;
+    		margin-bottom: auto;
+	}
+</style>
+<div class="nav_div alert alert-primary" role="alert">
+	<a href="/home/{{ root_user.HASH }}" class="nav_a">Моя страница</a>
+	<a href="/home/{{ root_user.HASH }}/create_chat" class="nav_a">Создать чат</a>
+	<a href="/home/{{ root_user.HASH }}/find_chat" class="nav_a">Найти чат</a>
+	<a href="/home/{{ root_user.HASH }}/list_chats/null" class="nav_a">Мои чаты</a>
+	<a href="/home/{{ root_user.HASH }}/find_user" class="nav_a">Найти пользователя</a>
+	<a href="/home/{{ root_user.HASH }}" class="nav_a" style="vertical-align: middle;"><img style="border-radius: 20px" src="{{ root_user.PHOTOS['root_photo'] }}" height=60px alt=""></a>
+	<a class="nav_a" style="color: red; font-size: 20px" href="/">Выход</a>
+</div>
+<br><br>
+<body style="background: #faffff url(/static/fon.jpg)">
+	{% block body %}
+	{% endblock %}
+</body>

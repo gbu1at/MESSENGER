@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Фотографии {{ other_user.login }}</title>
+	<style type="text/css">
+		.create_root_a {
+			    margin-right: 112px;
+    			color: #0a830a;
+		}
+		.delete_a {
+			    color: #950000;
+		}
+	</style>
+</head>
+{% extends "HTML/navigation.html" %}
+{% block body %}
+<div style="text-align: center;">
+	{% for id_photo in other_user.PHOTOS %}
+		{% if id_photo != "root_photo" %}
+			<img src="{{ other_user.PHOTOS[id_photo] }}" height=400px> <br>
+			{% if is_root %}
+				<a class="create_root_a" href="/home/{{ root_user.HASH }}/create_root_photo/{{ id_photo }}">Выбрать основной</a>
+				<a class="delete_a" href="/home/{{ root_user.HASH }}/del_photo/{{ id_photo }}">Удалить</a>
+			{% endif %}
+		{% endif %}
+		<br><br>
+	{% endfor %}
+	<br><br><br>
+</div>
+{% endblock %}
+</html>

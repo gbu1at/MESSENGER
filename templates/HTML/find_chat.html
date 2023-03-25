@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Поиск чата</title>
+</head>
+{% extends "HTML/navigation.html" %}
+{% block body %}
+	<form method="POST"  class="login_form" style="margin-left: 300px;">
+		<input type="text" name="chat ID"> ID чата <br><br>
+		<input type="text" name="password"> Название чата <br><br>
+		<input type="submit" name="найти" value="Найти">
+	</form>
+{% endblock %}
+</html>
